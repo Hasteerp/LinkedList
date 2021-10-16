@@ -1,0 +1,68 @@
+//LinkedList
+// create nodes, and linked them
+//  print using -> operation
+// print address of the nodes.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct tagName {
+    int data;
+    struct tagName * link;
+ 
+    } aType, *aTypePtr;
+    
+int main(void) {
+
+// 1- declare 3 pointers of the struct type, using any of the three methods below
+// >> Note that a pointer muct be initialized by assigning a memory address
+//    before using it, either by:
+//    a) ptr = &var;
+//    b) ptr = (int *) malloc(size of int))
+
+  //  aType *aNode, *bNode;         
+    aTypePtr head, aNode, bNode;
+  //  struct tagName *aNode, *bNode;
+
+
+// 2- assign NULL to the head
+  //  aType * head = NULL;
+    head = NULL;
+
+// 3a -allocate storage for the head using malloc, so head gets initialized 
+// then the members of the struct may be assigned values. 
+    head = (aType *)malloc(sizeof(aType));
+    head->data = 5;
+    head->link = NULL;            // assign NULL to head->link
+
+// 3b -allocate storage for the head using malloc, so head gets initialized 
+// then the members of the struct may be assigned values. 
+    aNode= (aType *)malloc(sizeof(aType));
+    head->link = aNode;           // re-assign head->link to point to add. of aNode  
+    aNode->data = 10;
+    aNode->link = NULL;
+
+// 3c -allocate storage for the head using malloc, so head gets initialized 
+// then the members of the struct may be assigned values. 
+    bNode= (aType *)malloc(sizeof(aType));
+    
+    aNode->link = bNode;        // assign aNode->link to point to add. of bNode 
+    bNode->data = 20;
+    bNode->link = NULL;
+
+    printf("head data is: %d\n", head->data);
+    printf("aNode data is: %d\n", aNode->data);
+    printf("Head aNode data is: %d\n", head->link->data);
+    printf("bNode data is: %d\n", bNode->data);
+    printf("Head bNode data is: %d\n", head->link->link->data);
+
+    puts("------------------------");
+
+    printf("add of head %p\n", head);
+    printf("add of head-link %p\n", head->link);
+    
+    printf("add of aNode %p\n", aNode);
+    printf("add of aNode-link %p\n", aNode->link);
+    printf("add of bNode %p\n", bNode);
+    return 0;
+}
